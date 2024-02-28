@@ -15,7 +15,7 @@ CVPR 2024
     <img src="assets/model.png" alt="overview" width="800" />
 </p>
 
-we introduce TriAdapter Multi-Modal Learning (TAMM) -- a novel two-stage learning approach based on three synergetic
+We introduce TriAdapter Multi-Modal Learning (TAMM) -- a novel two-stage learning approach based on three synergetic
 adapters. First, our CLIP Image Adapter mitigates the domain gap between 3D-rendered images and natural images, by
 adapting the visual representations of CLIP for synthetic image-text pairs. Subsequently, our Dual Adapters decouple the
 3D shape representation space into two complementary sub-spaces: one focusing on visual attributes and the other for
