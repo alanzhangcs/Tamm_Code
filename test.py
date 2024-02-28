@@ -172,13 +172,6 @@ def main(cli_args, extras):
             trainer = Trainer(rank, config, model, logit_scale, image_proj, text_proj, optimizer, scheduler, \
                               train_loader, modelnet40_loader, objaverse_lvis_loader, scanobjectnn_loader,
                               clip_adapter=pretrained_clip_adapter)
-        if config.resume is not None:
-            trainer.load_from_checkpoint(config.resume)
-        elif config.autoresume:
-            if os.path.exists(os.path.join(config.ckpt_dir, '{}.pt'.format('latest'))):
-                trainer.load_from_checkpoint(os.path.join(config.ckpt_dir, '{}.pt'.format('latest')))
-
-        trainer.train()
 
         if config.resume is not None:
             checkpoint = torch.load(config.resume)
@@ -190,18 +183,6 @@ def main(cli_args, extras):
             trainer.test_scanobjectnn()
             trainer.test_modelnet40()
             trainer.test_objaverse_lvis()
-
-        if config.resume_all is not None:
-            all_checks = os.listdir(config.resume_all)
-            all_checks.sort()
-            # print(all_checks)
-            for ckpt_path in all_checks:
-                if ckpt_path.startswith("epoch"):
-                    logging.info("testing {}".format(ckpt_path))
-                    trainer.load_from_checkpoint(os.path.join(config.resume_all, ckpt_path))
-                    trainer.test_scanobjectnn()
-                    trainer.test_modelnet40()
-                    trainer.test_objaverse_lvis()
 
 
 
