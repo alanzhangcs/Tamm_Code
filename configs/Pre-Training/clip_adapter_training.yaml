@@ -8,33 +8,24 @@ fix_seed: True
 seed: 0
 use_cia: True
 model:
-  name: PointBERT
-  scaling: 4
-  use_dense: True
-  in_channel: 6
-  out_channel: 512
-  embedding_channel: 1024
-  voxel_size: 0.02
-
-pretrained_clip:
-  name: CLIPAdapter
+  name: CLIPImageAdapter
   ratio: 0.2
-  c_in: 1280
-  path: exp/train_clip_adapter@20230914-212547/ckpt/epoch_23.pt
+  c_in: ${clip_embed_dim}
+
 
 
 training:
-  use_openclip_optimizer_scheduler: True
   scheduler: 'cosine'
-  max_epoch: 200
+  warmup_epoch: 20
+  max_epoch: 400
   test_epoch: 70
-  lr: 0.00015
-  lr_decay: 30
-  warmup_epoch: 10
-  lr_decay_rate: 0.95
+  lr: 0.00025
+  lr_decay: 15
+  lr_decay_rate: 0.967
   beta1: 0.9
   beta2: 0.999
-  eps: 1.0e-08
+  eps: 1.0e-8
+  warmup: 2
   log_freq: 10
   save_freq: 1
   lambda_img_contras: 1
@@ -44,17 +35,6 @@ training:
   logit_scale_init: 14.28
   use_mask: False
   mask_threshold: 0.1
-  loss_type: two_branch
-  mlp_type: mlp
-  image_branch_in_dim: 512
-  text_branch_in_dim: 512
-  image_branch_hidden: 1024
-  text_branch_hidden: 1024
-  image_branch_out_dim: 1280
-  text_branch_out_dim: 1280
-  text_branch_dropout: 0.2
-  image_branch_dropout: 0.5
-  activate: gelu
 
 
 dataset:
