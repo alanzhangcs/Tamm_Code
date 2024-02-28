@@ -1,7 +1,7 @@
 project_name: 3D_CLIP
 clip_embed_dim: 1280
 clip_embed_version: OpenCLIP
-trainer: 'tamm_trainer'
+trainer: 'trainer_clip_adapter'
 batch_size: 50
 num_points: 10000
 fix_seed: True
@@ -76,7 +76,7 @@ dataset:
   use_color: True
   rgb_random_drop_prob: 0.5
   augment: True
-  text_source: [ text, caption, retrieval_text ]
+  text_source: [ text, caption]
   use_text_filtering: True
   use_prompt_engineering: True
   gpt4_filtering_path: meta_data/gpt4_filtering.json
