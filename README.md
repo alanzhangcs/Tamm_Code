@@ -31,7 +31,6 @@ We are committed to open-sourcing Uni3D related materials, including:
 - [x] Pretraining code
 - [ ] Pretrained checkpoints
 - [ ] Downstream tasks implementation
-- 
 ## Installation
 
 Clone this repository and install the required packages:
