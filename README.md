@@ -21,9 +21,21 @@ adapting the visual representations of CLIP for synthetic image-text pairs. Subs
 3D shape representation space into two complementary sub-spaces: one focusing on visual attributes and the other for
 semantic understanding, which ensure a more comprehensive and effective multi-modal pre-training.
 
+## Schedule
+
+We are committed to open-sourcing Uni3D related materials, including:
+
+
+- [x] Evaluation code
+- [x] Evaluation data
+- [x] Pretraining code
+- [ ] Pretrained checkpoints
+- [ ] Downstream tasks implementation
+- 
 ## Installation
 
 Clone this repository and install the required packages:
+
 ```
 conda create -n tamm python=3.9
 conda activate tamm
@@ -34,23 +46,26 @@ pip install huggingface_hub tqdm
 ```
 
 ## Pre-training
+
 1. Please refer to [here](https://github.com/Colin97/OpenShape_code) for pre-train dataset preparation.
 2. Run the pre-training stage1 by the following command:
+
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3  torchrun  --nproc_per_node=4 --master_port=29001 main.py --config configs/clip_image_adapter_training.yaml
 ```
+
 3. Run the pre-training stage2 by the following command:
+
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3  torchrun  --nproc_per_node=4 --master_port=29001 main.py --config configs/pointbert.yaml
 ```
 
-## Training
 
-Run the training by the following command:
 
-```
+## Acknowledgement
 
-```
+TAMM is built using the
+awesome  [OpenCLIP](https://github.com/mlfoundations/open_clip), [ULIP](https://github.com/salesforce/ULIP), [OpenShape](https://github.com/Colin97/OpenShape_code) and [Uni3D](https://github.com/baaivision/Uni3D). 
 
 
 
