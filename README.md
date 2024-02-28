@@ -33,11 +33,16 @@ conda install -c dglteam/label/cu113 dgl
 pip install huggingface_hub tqdm
 ```
 
-
-## Training Data
-
-We adopt the training and inference data from previous work OpenShape. You can find
-it [here](https://github.com/Colin97/OpenShape_code)
+## Pre-training
+1. Please refer to [here](https://github.com/Colin97/OpenShape_code) for pre-train dataset preparation.
+2. Run the pre-training stage1 by the following command:
+```
+CUDA_VISIBLE_DEVICES=0,1,2,3  torchrun  --nproc_per_node=4 --master_port=29001 main.py --config configs/clip_image_adapter_training.yaml
+```
+3. Run the pre-training stage2 by the following command:
+```
+CUDA_VISIBLE_DEVICES=0,1,2,3  torchrun  --nproc_per_node=4 --master_port=29001 main.py --config configs/pointbert.yaml
+```
 
 ## Training
 
@@ -47,7 +52,6 @@ Run the training by the following command:
 
 ```
 
-## TODO List
 
 
 
