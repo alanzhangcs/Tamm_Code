@@ -23,7 +23,7 @@ semantic understanding, which ensure a more comprehensive and effective multi-mo
 
 ## Schedule
 
-We are committed to open-sourcing Uni3D related materials, including:
+We are committed to open-sourcing TAMM related materials, including:
 
 
 - [x] Evaluation code
