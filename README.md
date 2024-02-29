@@ -59,7 +59,12 @@ CUDA_VISIBLE_DEVICES=0,1,2,3  torchrun  --nproc_per_node=4 --master_port=29001 m
 CUDA_VISIBLE_DEVICES=0,1,2,3  torchrun  --nproc_per_node=4 --master_port=29001 main.py --config configs/pointbert.yaml
 ```
 
+## Inference
+Run the zero-shot evaluation by the following command
 
+```
+CUDA_VISIBLE_DEVICES=0,1,2,3  torchrun  --nproc_per_node=4 --master_port=29001 test          .py --config configs/pointbert.yaml
+```
 
 ## Acknowledgement
 
