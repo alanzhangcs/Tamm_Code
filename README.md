@@ -1,6 +1,6 @@
 <div align='center'>
 
-<h2><a href="https://arxiv.org/abs/2310.06773">TAMM: TriAdapter Multi-Modal Learning for 3D Shape Understanding</a></h2>
+<h2><a href="https://alanzhangcs.github.io/tamm-page/">TAMM: TriAdapter Multi-Modal Learning for 3D Shape Understanding</a></h2>
 
 [Zhihao Zhang](https://alanzhangcs.github.io/)<sup>1*</sup>, [Shengcao Cao](https://shengcao.netlify.app/)<sup>
 2*</sup>, [Yuxiong Wang](https://yxw.web.illinois.edu/)<sup>2</sup>
