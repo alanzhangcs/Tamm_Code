@@ -72,7 +72,15 @@ TAMM is built using the
 awesome  [OpenCLIP](https://github.com/mlfoundations/open_clip), [ULIP](https://github.com/salesforce/ULIP), [OpenShape](https://github.com/Colin97/OpenShape_code) and [Uni3D](https://github.com/baaivision/Uni3D). 
 
 
-
+## Citation
+```bib
+@article{zhang2024tamm,
+  title={TAMM: TriAdapter Multi-Modal Learning for 3D Shape Understanding},
+  author={Zhang, Zhihao and Cao, Shengcao and Wang, Yu-Xiong},
+  journal={arXiv preprint arXiv:2402.18490},
+  year={2024}
+}
+```
 
 
 
