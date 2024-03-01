@@ -49,7 +49,7 @@ pip install huggingface_hub tqdm
 |                                             Model                                              |   Training Data    | Objaverse-LVIS Top1 (Top5) | ModelNet40 Top1 (Top5) | ScanObjectNN Top1 (Top5) |
 |:----------------------------------------------------------------------------------------------:|:------------------:|:--------------------------:|:----------------------:|:------------------------:|
 | [**PointBert**](https://huggingface.co/zhihao406/tamm-models/blob/main/tamm_pointbert_no_lvis.pt) | Ensembled w/o LVIS |        43.5 (72.3)         |      86.2 (97.9)       |       55.9 (88.2)        | 
-|      [**PointBert**](https://huggingface.co/zhihao406/tamm-models/blob/main/tamm_pointbert_ensemble.pt)      |     Ensembled      |        51.7 (81.2)         |      85.8 (97.4)       |       55.3 (86.8)        | 
+|      [**PointBert**](https://huggingface.co/zhihao406/tamm-models/blob/main/tamm_pointbert_ensemble.pt)      |     Ensembled      |        51.9 (81.3)         |      86.1 (97.8)       |       57.0 (86.8)        | 
 |  [**PointBert**](https://huggingface.co/zhihao406/tamm-models/blob/main/tamm_pointbert_shapenet.pt)  |      ShapeNet      |        13.7 (29.2)         |      73.2 (91.8)       |       54.3 (83.6)        | 
 
 
