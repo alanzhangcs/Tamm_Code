@@ -4,9 +4,9 @@ clip_embed_version: OpenCLIP
 trainer: 'tamm_trainer'
 batch_size: 50
 num_points: 10000
-fix_seed: True
+fix_seed: False
 seed: 0
-use_cia: True
+use_cia: False
 model:
   name: PointBERT
   scaling: 4
@@ -89,6 +89,8 @@ modelnet40:
   test_batch_size: ${batch_size}
   clip_feat_path: meta_data/Zero-Shot/modelnet40/cat_name_pt_feat.npy
   y_up: True
+  normalize: True
+  use_color: True
 
 objaverse_lvis:
   split: meta_data/Pre-Training/split/lvis.json
@@ -106,6 +108,6 @@ scanobjectnn:
   num_workers: 10
   test_batch_size: ${batch_size}
   clip_feat_path: meta_data/Zero-Shot/scanobjectnn/cat_name_pt_feat.npy
+  normalize: True
+  use_color: True
   y_up: True
-
-  

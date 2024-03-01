@@ -174,12 +174,7 @@ def main(cli_args, extras):
                               clip_adapter=pretrained_clip_adapter)
 
         if config.resume is not None:
-            checkpoint = torch.load(config.resume)
-            trainer.model.load_state_dict(checkpoint['state_dict'])
-            if config.trainer != "trainer":
-                trainer.image_alignment_adapter.load_state_dict(checkpoint['image_alignment_adapter'])
-                trainer.text_alignment_adapter.load_state_dict(checkpoint['text_alignment_adapter'])
-
+            trainer.load_from_checkpoint(config.resume)
             trainer.test_scanobjectnn()
             trainer.test_modelnet40()
             trainer.test_objaverse_lvis()

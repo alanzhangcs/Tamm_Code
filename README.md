@@ -29,7 +29,7 @@ We are committed to open-sourcing TAMM related materials, including:
 - [x] Evaluation code
 - [x] Evaluation data
 - [x] Pretraining code
-- [ ] Pretrained checkpoints
+- [x] Pretrained checkpoints
 - [ ] Downstream tasks implementation
 ## Installation
 
@@ -43,6 +43,15 @@ pip install -U git+https://github.com/NVIDIA/MinkowskiEngine
 conda install -c dglteam/label/cu113 dgl
 pip install huggingface_hub tqdm
 ```
+
+## Model Zoo
+
+|                                             Model                                              |   Training Data    | Objaverse-LVIS Top1 (Top5) | ModelNet40 Top1 (Top5) | ScanObjectNN Top1 (Top5) |
+|:----------------------------------------------------------------------------------------------:|:------------------:|:--------------------------:|:----------------------:|:------------------------:|
+| [**PointBert**](https://huggingface.co/zhihao406/tamm-models/blob/main/tamm_pointbert_no_lvis.pt) | Ensembled w/o LVIS |        43.5 (72.3)         |      86.2 (97.9)       |       55.9 (88.2)        | 
+|      [**PointBert**](https://huggingface.co/zhihao406/tamm-models/blob/main/tamm_pointbert_ensemble.pt)      |     Ensembled      |        51.7 (81.2)         |      85.8 (97.4)       |       55.3 (86.8)        | 
+|  [**PointBert**](https://huggingface.co/zhihao406/tamm-models/blob/main/tamm_pointbert_shapenet.pt)  |      ShapeNet      |        13.7 (29.2)         |      73.2 (91.8)       |       54.3 (83.6)        | 
+
 
 ## Pre-training
 
@@ -63,7 +72,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3  torchrun  --nproc_per_node=4 --master_port=29001 m
 Run the zero-shot evaluation by the following command
 
 ```
-CUDA_VISIBLE_DEVICES=0,1,2,3  torchrun  --nproc_per_node=4 --master_port=29001 test.py --config configs/pointbert.yaml
+CUDA_VISIBLE_DEVICES=0,1,2,3  torchrun  --nproc_per_node=4 --master_port=29001 test.py --config configs/Pre-training/pointbert.yaml --resume /path/to/pre-trained-models
 ```
 
 ## Acknowledgement
