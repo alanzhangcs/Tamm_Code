@@ -61,8 +61,6 @@ pip install huggingface_hub tqdm
 │   ├── objaverse_processed
 │   │   ├── merged_for_training_all
 │   │   │   ├── ...
-│   │   └── supporting_data
-│   │       └── ...
 │   meta_data
 ```
 
