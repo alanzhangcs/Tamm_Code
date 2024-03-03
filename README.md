@@ -55,7 +55,17 @@ pip install huggingface_hub tqdm
 
 ## Pre-training
 
-1. Please refer to [here](https://github.com/Colin97/OpenShape_code) for pre-train dataset preparation.
+1. Please refer to [here](https://github.com/Colin97/OpenShape_code) for pre-train dataset preparation and put it in the data folder. The folder should look like this:
+```
+├── data
+│   ├── objaverse_processed
+│   │   ├── merged_for_training_all
+│   │   │   ├── ...
+│   │   └── supporting_data
+│   │       └── ...
+│   meta_data
+```
+
 2. Run the pre-training stage1 by the following command:
 
 ```
