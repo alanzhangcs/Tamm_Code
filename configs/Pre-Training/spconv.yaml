@@ -1,0 +1,113 @@
+project_name: 3D_CLIP
+clip_embed_dim: 1280
+clip_embed_version: OpenCLIP
+trainer: 'tamm_trainer'
+batch_size: 50
+num_points: 10000
+fix_seed: False
+seed: 0
+use_cia: False
+model:
+  name: PointBERT
+  scaling: 4
+  use_dense: True
+  in_channel: 6
+  out_channel: 512
+  embedding_channel: 1024
+  voxel_size: 0.02
+
+pretrained_clip:
+  name: CLIPAdapter
+  ratio: 0.2
+  c_in: 1280
+  path: exp/train_clip_adapter@20230914-212547/ckpt/epoch_23.pt
+
+
+training:
+  use_openclip_optimizer_scheduler: True
+  scheduler: 'cosine'
+  max_epoch: 200
+  test_epoch: 70
+  lr: 0.00015
+  lr_decay: 30
+  warmup_epoch: 10
+  lr_decay_rate: 0.95
+  beta1: 0.9
+  beta2: 0.999
+  eps: 1.0e-08
+  log_freq: 10
+  save_freq: 1
+  lambda_img_contras: 1
+  lambda_text_contras: 1
+  use_image_proj: False
+  use_text_proj: False
+  logit_scale_init: 14.28
+  use_mask: False
+  mask_threshold: 0.1
+  loss_type: two_branch
+  mlp_type: mlp
+  image_branch_in_dim: 512
+  text_branch_in_dim: 512
+  image_branch_hidden: 1024
+  text_branch_hidden: 1024
+  image_branch_out_dim: 1280
+  text_branch_out_dim: 1280
+  text_branch_dropout: 0.2
+  image_branch_dropout: 0.5
+  activate: gelu
+
+
+dataset:
+  name: Four
+  num_imgs: 4
+  num_texts: 1
+  train_split: meta_data/Pre-Training/split/ablation/train_shapenet_only.json
+  train_partial: -1
+  use_openshape_feature: True
+  num_points: ${num_points}
+  num_workers: 10
+  train_batch_size: ${batch_size}
+  use_knn_negative_sample: True
+  negative_sample_num: 1
+  knn_path: meta_data/point_feat_knn.npy
+  y_up: True
+  normalize: True
+  random_z_rotate: True
+  use_color: True
+  rgb_random_drop_prob: 0.5
+  augment: True
+  text_source: [ text, caption, retrieval_text ]
+  use_text_filtering: True
+  use_prompt_engineering: True
+  gpt4_filtering_path: meta_data/gpt4_filtering.json
+
+modelnet40:
+  test_split: meta_data/Zero-Shot/modelnet40/test_split.json
+  test_pc: meta_data/Zero-Shot/modelnet40/test_pc.npy
+  num_points: ${num_points}
+  num_workers: 10
+  test_batch_size: ${batch_size}
+  clip_feat_path: meta_data/Zero-Shot/modelnet40/cat_name_pt_feat.npy
+  y_up: True
+  normalize: True
+  use_color: True
+
+objaverse_lvis:
+  split: meta_data/Pre-Training/split/lvis.json
+  clip_feat_path: meta_data/Zero-Shot/LVIS/lvis_cat_name_pt_feat.npy
+  num_points: ${num_points}
+  num_workers: 6
+  batch_size: ${batch_size}
+  y_up: True
+  normalize: True
+  use_color: True
+
+scanobjectnn:
+  data_path: meta_data/Zero-Shot/scanobjectnn/xyz_label.npy
+  num_points: ${num_points}
+  num_workers: 10
+  test_batch_size: ${batch_size}
+  clip_feat_path: meta_data/Zero-Shot/scanobjectnn/cat_name_pt_feat.npy
+  normalize: True
+  use_color: True
+  y_up: True
