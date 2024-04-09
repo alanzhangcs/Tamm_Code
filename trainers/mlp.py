@@ -35,70 +35,11 @@ class MLP(nn.Module):
     def forward(self, x):
         return self.classifier(x)
 
-class MLP_2(nn.Module):
-    def __init__(self, in_features, hidden_features=None, out_features=None, act_layer=nn.GELU, drop=0.):
-        super().__init__()
-        self.act = get_activation("gelu")
-        self.classifier = nn.Sequential(
-            nn.Linear(in_features, hidden_features),
-            nn.BatchNorm1d(hidden_features),
-            self.act,
-            nn.Dropout(0.5),
-            nn.Linear(hidden_features, out_features),
-            nn.BatchNorm1d(out_features),
-            self.act,
-            nn.Dropout(0.5),
-        )
 
-    def forward(self, x):
-        return self.classifier(x)
-
-class MLP_3(nn.Module):
-    def __init__(self, in_features, hidden_features=None, out_features=None, act_layer=nn.GELU, drop=0.):
-        super().__init__()
-        self.act = get_activation("gelu")
-        self.adapter = nn.Sequential(
-            nn.Linear(in_features, hidden_features),
-            nn.BatchNorm1d(hidden_features),
-            self.act,
-            nn.Dropout(0.5),
-            nn.Linear(hidden_features, out_features)
-        )
-
-    def forward(self, x):
-        return self.adapter(x)
 import MinkowskiEngine as ME
+
+
 class MLP_ME(nn.Module):
-    def __init__(self, in_features, hidden_features=None, out_features=None, act_layer=nn.GELU, drop=0.):
-        super().__init__()
-        self.final = nn.Sequential(
-            self.get_mlp_block(in_features, hidden_features),
-            ME.MinkowskiDropout(),
-            self.get_mlp_block(hidden_features, hidden_features),
-            ME.MinkowskiLinear(hidden_features, out_features, bias=True),
-        )
-        self.weight_initialization()
-
-    def get_mlp_block(self, in_channel, out_channel):
-        return nn.Sequential(
-            ME.MinkowskiLinear(in_channel, out_channel, bias=False),
-            ME.MinkowskiBatchNorm(out_channel),
-            ME.MinkowskiLeakyReLU(),
-        )
-
-    def weight_initialization(self):
-        for m in self.modules():
-            if isinstance(m, ME.MinkowskiConvolution):
-                ME.utils.kaiming_normal_(m.kernel, mode="fan_out", nonlinearity="relu")
-
-            if isinstance(m, ME.MinkowskiBatchNorm):
-                nn.init.constant_(m.bn.weight, 1)
-                nn.init.constant_(m.bn.bias, 0)
-
-    def forward(self, x):
-        return self.final(x).F
-
-class MLP_ME_1(nn.Module):
     def __init__(self, in_features, hidden_features=None, out_features=None, act_layer=nn.GELU, drop=0.):
         super().__init__()
         self.final = nn.Sequential(
@@ -106,7 +47,6 @@ class MLP_ME_1(nn.Module):
             ME.MinkowskiDropout(0.5),
             self.get_mlp_block(hidden_features, out_features),
             ME.MinkowskiDropout(0.5),
-            # ME.MinkowskiLinear(hidden_features, out_features, bias=True),
         )
         self.weight_initialization()
 

@@ -8,11 +8,9 @@ fix_seed: False
 seed: 0
 use_cia: False
 model:
-  name: PointBERT
-  scaling: 4
-  use_dense: True
+  name: MinkResNet34_Two
   in_channel: 6
-  out_channel: 512
+  out_channel: 1280
   embedding_channel: 1024
   voxel_size: 0.02
 
@@ -45,11 +43,11 @@ training:
   use_mask: False
   mask_threshold: 0.1
   loss_type: two_branch
-  mlp_type: mlp
-  image_branch_in_dim: 512
-  text_branch_in_dim: 512
-  image_branch_hidden: 1024
-  text_branch_hidden: 1024
+  mlp_type: mlp_me
+  image_branch_in_dim: 1280
+  text_branch_in_dim: 1280
+  image_branch_hidden: 1280
+  text_branch_hidden: 1280
   image_branch_out_dim: 1280
   text_branch_out_dim: 1280
   text_branch_dropout: 0.2
